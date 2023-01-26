@@ -164,6 +164,8 @@ void NegativeSpaceAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer
             output = -0.5f + r;
         }
         
+        output *= 0.5f;
+        
         buffer.setSample(0, sample, output);
         buffer.setSample(1, sample, output);
     }
@@ -172,7 +174,7 @@ void NegativeSpaceAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer
 //==============================================================================
 bool NegativeSpaceAudioProcessor::hasEditor() const
 {
-    return true; // (change this to false if you choose to not supply an editor)
+    return false; // (change this to false if you choose to not supply an editor)
 }
 
 juce::AudioProcessorEditor* NegativeSpaceAudioProcessor::createEditor()
