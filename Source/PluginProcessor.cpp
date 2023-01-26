@@ -155,7 +155,15 @@ void NegativeSpaceAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer
         float l = buffer.getSample(0, sample);
         float r = buffer.getSample(1, sample);
         
-        float output = ((l+1)-(r-1))*0.5-1.0f;
+        // This should generate pure white noise
+        float output;
+        
+        if(sample % 2 == 0) {
+            output = 0.5f + l;
+        } else {
+            output = -0.5f + r;
+        }
+        
         buffer.setSample(0, sample, output);
         buffer.setSample(1, sample, output);
     }
